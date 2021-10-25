@@ -5,8 +5,8 @@
 
 ## Features
 * Two main functions:
-+ Built-in audio player
-+ The ability to work offline, saving pre-selected songs and playing them inside the application
+  + Built-in audio player
+  + The ability to work offline, saving pre-selected songs and playing them inside the application
 * Some elements of the social network - the ability to like the song, the ability to leave a comment under the song, etc.
 * Authentication - reverb only works with authenticated users
 * Authorization
