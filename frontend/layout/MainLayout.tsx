@@ -23,7 +23,7 @@ const MainLayout: React.FC<MainLayoutProps>
                 <title>{title || 'Музична платформа'}</title>
                 <meta name="description" content={`Музична платформа. Відправ свій трек у вічність.` + description}/>
                 <meta name="robots" content="index, follow"/>
-                <meta name="keywords" content={keywords || "Музыка, треки, артисты"}/>
+                <meta name="keywords" content={keywords || "Музика, треки, виконавці"}/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
             </Head>
             <Navbar/>
