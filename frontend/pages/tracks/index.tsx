@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import {Box, Button, Card, Grid} from "@material-ui/core";
 import {useRouter} from "next/router";
 import {ITrack} from "../../types/track";

@@ -25,6 +25,7 @@ const MainLayout: React.FC<MainLayoutProps>
                 <meta name="robots" content="index, follow"/>
                 <meta name="keywords" content={keywords || "Музика, треки, виконавці"}/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
             </Head>
             <Navbar/>
             <Container style={{margin: '90px 0'}}>

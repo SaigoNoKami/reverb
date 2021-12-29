@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import StepWrapper from "../../components/StepWrapper";
 import {Button, Grid, TextField} from "@material-ui/core";
 import FileUpload from "../../components/FileUpload";
