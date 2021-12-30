@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "npm run --prefix frontend format:fix && npm run --prefix frontend lint && npm run --prefix server format && npm run --prefix server lint"
+    "precommit": "npm run --prefix frontend format:fix && npm run --prefix frontend lint && npm run --prefix server format && npm run --prefix server lint",
+    "lint": "npm run --prefix frontend lint && npm run --prefix server lint"
   },
   "author": "",
   "license": "ISC",

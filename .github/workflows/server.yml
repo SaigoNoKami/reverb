@@ -6,9 +6,9 @@ name: Backend_CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 defaults:
   run:
@@ -31,15 +31,12 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Backend tests
+      - name: Install dependences
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
       - run: npm install
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Run lint check
+        run: npm run lint
