@@ -28,7 +28,7 @@ const Index = () => {
                         <Grid container justifyContent='space-between'>
                             <h1>Список треков</h1>
                             <Button onClick={() => router.push('/tracks/create')}>
-                                Загрузить
+                                Завантажити
                             </Button>
                         </Grid>
                     </Box>

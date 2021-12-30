@@ -4,7 +4,7 @@ import {Card, Container, Grid, Step, StepLabel, Stepper} from "@material-ui/core
 interface StepWrapperProps {
     activeStep: number;
 }
-const steps = ['Информация о треке', 'Загрузите обложку', 'Загрузите сам трек']
+const steps = ['Опис треку', 'Завантажити обкладинку', 'Завантажити аудіо']
 
 const StepWrapper: React.FC<StepWrapperProps> = ({activeStep, children}) => {
     return (

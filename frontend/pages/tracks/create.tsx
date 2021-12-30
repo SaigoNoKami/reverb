@@ -44,17 +44,17 @@ const Create = () => {
                     <TextField
                         {...name}
                         style={{marginTop: 10}}
-                        label={"Название трека"}
+                        label={"Назва треку"}
                     />
                     <TextField
                         {...artist}
                         style={{marginTop: 10}}
-                        label={"Имя исполнителя"}
+                        label={"Ім'я виконавця"}
                     />
                     <TextField
                         {...text}
                         style={{marginTop: 10}}
-                        label={"Слова к треку"}
+                        label={"Опис"}
                         multiline
                         rows={3}
                     />
@@ -62,18 +62,18 @@ const Create = () => {
                 }
                 {activeStep === 1 &&
                 <FileUpload setFile={setPicture} accept="image/*">
-                    <Button>Загрузить изображение</Button>
+                    <Button>Завантажити обкладинку</Button>
                 </FileUpload>
                 }
                 {activeStep === 2 &&
                 <FileUpload setFile={setAudio} accept="audio/*">
-                    <Button>Загрузить аудио</Button>
+                    <Button>Завантажити аудіо</Button>
                 </FileUpload>
                 }
             </StepWrapper>
             <Grid container justifyContent='space-between'>
-                <Button disabled={activeStep === 0} onClick={back}>Назад</Button>
-                <Button onClick={next}>Далее</Button>
+                <Button disabled={activeStep === 0} onClick={back}>Повернутись</Button>
+                <Button onClick={next}>Далі</Button>
             </Grid>
         </MainLayout>
     );
