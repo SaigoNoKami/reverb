@@ -43,7 +43,7 @@ export default function Navbar() {
             <AppBar
                 position="fixed"
             >
-                <Toolbar>
+                <Toolbar style = {{background:'pink'}}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"

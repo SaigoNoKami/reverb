@@ -27,8 +27,8 @@ const MainLayout: React.FC<MainLayoutProps>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
             </Head>
-            <Navbar/>
-            <Container style={{margin: '90px 0'}}>
+            <Navbar />
+            <Container style={{margin: '90px 0', color: 'black'}}>
                 {children}
             </Container>
             <Player/>

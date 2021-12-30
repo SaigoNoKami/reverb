@@ -2,6 +2,10 @@ import React from 'react';
 import {Button} from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import MainLayout from "../layout/MainLayout";
+import { Block } from '@material-ui/icons';
+import { pink } from '@material-ui/core/colors';
+import '../styles/Footer.module.scss'
+
 
 const Index = () => {
     return (

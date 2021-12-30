@@ -33,7 +33,7 @@ const TrackPage = ({serverTrack}) => {
         >
             <Button
                 variant={"outlined"}
-                style={{fontSize: 32}}
+                style={{fontSize: 16, color: 'pink', borderColor: 'pink'}}
                 onClick={() => router.push('/tracks')}
             >
                 До списку
@@ -53,21 +53,28 @@ const TrackPage = ({serverTrack}) => {
 
                 <TextField
                     label="Ваше ім'я"
+                    style = {{margin: '5px'}}
                     fullWidth
                     {...username}
                 />
                 <TextField
                     label="Комментар"
+                    style = {{margin: '5px'}}
                     {...text}
                     fullWidth
                     multiline
                     rows={4}
                 />
-                <Button onClick={addComment}>Отправить</Button>
+                <Button 
+                variant={"outlined"}
+                style={{fontSize: 16, color: 'pink', borderColor: 'pink'}}
+                onClick={addComment}>
+                    Надіслати
+                </Button>
             </Grid>
             <div>
                 {track.comments.map(comment =>
-                    <div>
+                    <div style = {{border: 'inline 2px pink'}}>
                         <div>Автор - {comment.username}</div>
                         <div>Комментар - {comment.text}</div>
                     </div>
