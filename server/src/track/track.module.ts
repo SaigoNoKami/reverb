@@ -5,6 +5,7 @@ import {MongooseModule} from "@nestjs/mongoose";
 import {Track, TrackSchema} from "./schemas/track.schema";
 import {Comment, CommentSchema} from "./schemas/comment.schema";
 import {FileService} from "../file/file.service";
+import { ConfigService } from "@nestjs/config";
 
 
 @Module({
@@ -13,6 +14,6 @@ import {FileService} from "../file/file.service";
         MongooseModule.forFeature([{name: Comment.name, schema: CommentSchema}]),
     ],
     controllers: [TrackController],
-    providers: [TrackService, FileService]
+    providers: [TrackService, FileService, ConfigService]
 })
 export class TrackModule {}
