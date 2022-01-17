@@ -31,9 +31,7 @@ export class TrackService {
         const track = await this.trackModel.findById(id).populate('comments');
         return track;
     }
-
-   
-
+    
     async delete(id: ObjectId): Promise<ObjectId> {
         const track = await this.trackModel.findByIdAndDelete(id);
         return track._id

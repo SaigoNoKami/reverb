@@ -19,15 +19,6 @@ export class TrackController {
         const {picture, audio} = files
         return this.trackService.create(dto, picture[0], audio[0]);
     }
-
-    
-
-    
-
-
-  
-
-
     @Get()
     getAll(@Query('count') count: number,
            @Query('offset') offset: number) {
