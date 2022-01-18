@@ -2,8 +2,8 @@ import {HttpException, HttpStatus, Injectable} from "@nestjs/common";
 import * as path from 'path'
 import { ConfigService } from '@nestjs/config';
 import * as uuid from 'uuid'
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-
+import * as AWS from 'aws-sdk'
+const stream = require('stream');
 
 export enum FileType {
     AUDIO = 'audio',
@@ -17,16 +17,29 @@ export class FileService{
       ) {}
     createFile(type: FileType, file): string {
         try {
-            const s3client = new S3Client({region: this.configService.get('AWS_REGION')});
-            const fileExtension =  path.extname(file.originalname) //file.originalname.split('.').pop()
+            const fileExtension =  path.extname(file.originalname) 
             const fileName = uuid.v4() + fileExtension
 
-            const uploadParams = {
-                Bucket: this.configService.get('AWS_PUBLIC_BUCKET_NAME'),
-                Body: file.buffer,
-                Key: type + '/' + fileName
-              }        
-            s3client.send(new PutObjectCommand(uploadParams))        
+            const uploadStream = ({ Bucket}) => {
+                const s3 = new AWS.S3();
+                const pass = new stream.PassThrough();
+                const uploadParams = {
+                    Bucket: this.configService.get('AWS_PUBLIC_BUCKET_NAME'),
+                    Body: pass,
+                    Key: type + '/' + fileName
+                  }    
+                return {
+                  writeStream: pass,
+                  promise: s3.upload(uploadParams).promise(),
+                };
+              }
+
+              const { writeStream, promise } = uploadStream({Bucket: 'AWS_PUBLIC_BUCKET_NAME'})
+              const readStream = stream.Readable.from(file.buffer)
+              const pipeline = readStream.pipe(writeStream);
+
+              
+                
             return type + '/' + fileName
 
         } catch (e) {

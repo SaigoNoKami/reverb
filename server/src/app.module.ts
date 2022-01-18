@@ -3,10 +3,10 @@ import {TrackModule} from "./track/track.module";
 import {MongooseModule} from "@nestjs/mongoose";
 import {FileModule} from "./file/file.module";
 import { ConfigModule, ConfigService} from '@nestjs/config';
-import { ImageModule } from "./image/image.module";
-import { AudioModule } from "./audio/audio.module";
+import { config } from "./config";
 
 const isPropertyString = (obj, field) => obj[field] && typeof obj[field] === 'string';
+
 
 @Module({
     providers: [ ConfigService],
@@ -14,17 +14,15 @@ const isPropertyString = (obj, field) => obj[field] && typeof obj[field] === 'st
         TrackModule,
         MongooseModule.forRoot(process.env.Mongo_KEY),
         FileModule,
-        ImageModule,
-        AudioModule,
         ConfigModule.forRoot({
+            isGlobal: true,
+            load: [config],
             validationSchema: {
                 validate: (config) => {
-                    return isPropertyString(config, 'Mongo_KEY') &&
-                           isPropertyString(config, 'AWS_REGION') &&
+                    return isPropertyString(config, 'AWS_REGION') &&
                            isPropertyString(config, 'AWS_ACCESS_KEY_ID') &&
                            isPropertyString(config, 'AWS_SECRET_ACCESS_KEY') &&
-                           isPropertyString(config, 'AWS_PUBLIC_BUCKET_NAME') &&
-                           isPropertyString(config, 'CLOUDFRONT');                    
+                           isPropertyString(config, 'Mongo_KEY');
                 }
             }
           }),
@@ -33,4 +31,3 @@ const isPropertyString = (obj, field) => obj[field] && typeof obj[field] === 'st
  
 export class AppModule{
 }
-
