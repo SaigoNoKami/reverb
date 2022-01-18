@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Query, UploadedFiles, UseInterceptors} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Query, Res, UploadedFiles, UseInterceptors, Redirect} from "@nestjs/common";
 import {TrackService} from "./track.service";
 import {CreateTrackDto} from "./dto/create-track.dto";
 import {ObjectId} from "mongoose";
@@ -19,7 +19,6 @@ export class TrackController {
         const {picture, audio} = files
         return this.trackService.create(dto, picture[0], audio[0]);
     }
-
     @Get()
     getAll(@Query('count') count: number,
            @Query('offset') offset: number) {

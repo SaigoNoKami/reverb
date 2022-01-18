@@ -6,7 +6,7 @@ import {Comment, CommentDocument} from "./schemas/comment.schema";
 import {CreateTrackDto} from "./dto/create-track.dto";
 import {CreateCommentDto} from "./dto/create-comment.dto";
 import {FileService, FileType} from "../file/file.service";
-
+ 
 
 @Injectable()
 export class TrackService {
@@ -31,7 +31,7 @@ export class TrackService {
         const track = await this.trackModel.findById(id).populate('comments');
         return track;
     }
-
+    
     async delete(id: ObjectId): Promise<ObjectId> {
         const track = await this.trackModel.findByIdAndDelete(id);
         return track._id

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ITrack} from "../../types/track";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import {Button, Grid, TextField} from "@material-ui/core";
 import {useRouter} from "next/router";
 import {GetServerSideProps} from "next";
@@ -28,36 +28,36 @@ const TrackPage = ({serverTrack}) => {
 
     return (
         <MainLayout
-            title={"Музыкальная площадка - " + track.name + " - " + track.artist}
-            keywords={'Музыка, артисты, ' + track.name + ", " + track.artist}
+            title={"Мучна платформа - " + track.name + " - " + track.artist}
+            keywords={'Музика, артист, ' + track.name + ", " + track.artist}
         >
             <Button
                 variant={"outlined"}
                 style={{fontSize: 32}}
                 onClick={() => router.push('/tracks')}
             >
-                К списку
+                До списку
             </Button>
             <Grid container style={{margin: '20px 0'}}>
                 <img src={'http://localhost:5000/' + track.picture} width={200} height={200}/>
                 <div style={{marginLeft: 30}}>
-                    <h1>Название трека - {track.name}</h1>
-                    <h1>Исполнитель - {track.artist}</h1>
-                    <h1>Прослушиваний - {track.listens}</h1>
+                    <h1>Назва треку - {track.name}</h1>
+                    <h1>Виконавець - {track.artist}</h1>
+                    <h1>Прослуховування - {track.listens}</h1>
                 </div>
             </Grid>
-            <h1>Слова в треке</h1>
+            <h1>Слова</h1>
             <p>{track.text}</p>
-            <h1>Комментарии</h1>
+            <h1>Комментарі</h1>
             <Grid container>
 
                 <TextField
-                    label="Ваше имя"
+                    label="Ваше ім'я"
                     fullWidth
                     {...username}
                 />
                 <TextField
-                    label="Комментарий"
+                    label="Комментар"
                     {...text}
                     fullWidth
                     multiline
@@ -69,7 +69,7 @@ const TrackPage = ({serverTrack}) => {
                 {track.comments.map(comment =>
                     <div>
                         <div>Автор - {comment.username}</div>
-                        <div>Комментарий - {comment.text}</div>
+                        <div>Комментар - {comment.text}</div>
                     </div>
                 )}
             </div>
