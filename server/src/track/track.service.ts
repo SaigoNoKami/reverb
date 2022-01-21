@@ -1,15 +1,18 @@
+
 import {
   BadRequestException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
+
 import { Track, TrackDocument } from './schemas/track.schema';
 import { Model, ObjectId } from 'mongoose';
 import { Comment, CommentDocument } from './schemas/comment.schema';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { FileService, FileType } from '../file/file.service';
+
 import * as mongoose from 'mongoose';
 
 const MAGIC_NUMBERS = {
@@ -30,11 +33,13 @@ function checkMagicNumbers(magic) {
     return true;
 }
 
+
 @Injectable()
 export class TrackService {
   constructor(
     @InjectModel(Track.name) private trackModel: Model<TrackDocument>,
     @InjectModel(Comment.name) private commentModel: Model<CommentDocument>,
+
     @InjectConnection() private readonly connection: mongoose.Connection,
     private fileService: FileService,
   ) {}
@@ -101,6 +106,7 @@ export class TrackService {
     track.listens++;
     track.save();
   }
+
 
   async search(query: string): Promise<Track[]> {
     const tracks = await this.trackModel.find({

@@ -4,10 +4,12 @@ import * as uuid from 'uuid';
 import * as AWS from 'aws-sdk';
 import * as stream from 'stream';
 
+
 export enum FileType {
   AUDIO = 'audio',
   IMAGE = 'image',
 }
+
 
 
 @Injectable()
@@ -33,6 +35,7 @@ export class FileService {
       const { writeStream, promise } = uploadStream();
       const readStream = stream.Readable.from(file.buffer);
       const pipeline = readStream.pipe(writeStream);
+
 
       return type + '/' + fileName;
     } catch (e) {

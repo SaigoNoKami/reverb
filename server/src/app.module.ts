@@ -29,6 +29,7 @@ const isPropertyString = (obj, field) =>
         },
       },
     }),
+
   ],
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {ITrack} from "../types/track";
 import {Card, Grid, IconButton} from "@material-ui/core";
 import styles from '../styles/TrackItem.module.scss'
@@ -7,20 +8,22 @@ import {useRouter} from "next/router";
 import {useActions} from "../hooks/useActions";
 import axios from "axios";
 
+
 interface TrackItemProps {
-    track: ITrack;
-    active?: boolean;
+  track: ITrack;
+  active?: boolean;
 }
 
-const TrackItem: React.FC<TrackItemProps> = ({track, active = false}) => {
-    const router = useRouter()
-    const {playTrack, pauseTrack, setActiveTrack} = useActions()
+const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
+  const router = useRouter();
+  const { playTrack, pauseTrack, setActiveTrack } = useActions();
 
-    const play = (e) => {
-        e.stopPropagation()
-        setActiveTrack(track)
-        playTrack()
-    }
+  const play = (e) => {
+    e.stopPropagation();
+    setActiveTrack(track);
+    playTrack();
+  };
+
 
     return (
         <Card className={styles.track} >
@@ -47,3 +50,4 @@ const TrackItem: React.FC<TrackItemProps> = ({track, active = false}) => {
     );
 };
 export default TrackItem;
+

@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "npm run --prefix frontend format:fix && npm run --prefix frontend lint && npm run --prefix server format && npm run --prefix server lint",
+    "lint": "npm run --prefix frontend lint && npm run --prefix server lint"
   },
   "engines": {
     "node": ">= 14.17.6"
   }, 
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.5",
     "eslint": "^7.32.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "nodemon": "^2.0.12"
   }
 }

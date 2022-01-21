@@ -29,17 +29,19 @@ export class TrackController {
   )
   create(@UploadedFiles() files, @Body() dto: CreateTrackDto) {
     const { picture, audio } = files;
+
     console.log(dto);
     if (
-      dto.artist == undefined ||
-      dto.name == undefined ||
-      picture == undefined ||
-      audio == undefined
+      !dto.artist  ||
+      !dto.name  ||
+      !picture  ||
+      !audio 
     ) {
       throw new BadRequestException('Invalid data');
     }
     return this.trackService.create(dto, picture[0], audio[0]);
   }
+
   @Get()
   getAll(@Query('count') count: number, @Query('offset') offset: number) {
     return this.trackService.getAll(count, offset);
