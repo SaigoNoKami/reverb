@@ -16,20 +16,22 @@ const Create = () => {
   const text = useInput('');
   const router = useRouter();
 
-  const next = () => {
-    if (activeStep !== 2) {
-      setActiveStep((prev) => prev + 1);
-    } else {
-      const formData = new FormData();
-      formData.append('name', name.value);
-      formData.append('text', text.value);
-      formData.append('artist', artist.value);
-      formData.append('picture', picture);
-      formData.append('audio', audio);
-      axios
-        .post('http://localhost:5000/tracks', formData)
-        .then((resp) => router.push('/tracks'))
-        .catch((e) => console.log(e));
+
+    const next = () => {
+        if (activeStep !== 2) {
+            setActiveStep(prev => prev + 1)
+        } else {
+            const formData = new FormData()
+            formData.append('name', name.value)
+            formData.append('text', text.value)
+            formData.append('artist', artist.value)
+            formData.append('picture', picture)
+            formData.append('audio', audio)
+            axios.post('https://reverb-server.herokuapp.com/tracks', formData)
+                .then(resp => router.push('/tracks'))
+                .catch(e => console.log(e))
+        }
+
     }
   };
 

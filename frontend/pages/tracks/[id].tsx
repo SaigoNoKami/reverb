@@ -13,19 +13,19 @@ const TrackPage = ({ serverTrack }) => {
   const username = useInput('');
   const text = useInput('');
 
-  const addComment = async () => {
-    try {
-      const response = await axios.post(
-        'http://localhost:5000/tracks/comment',
-        {
-          username: username.value,
-          text: text.value,
-          trackId: track._id,
-        },
-      );
-      setTrack({ ...track, comments: [...track.comments, response.data] });
-    } catch (e) {
-      console.log(e);
+
+    const addComment = async () => {
+        try {
+            const response = await axios.post('https://reverb-server.herokuapp.com/tracks/comment', {
+                username: username.value,
+                text: text.value,
+                trackId: track._id
+            })
+            setTrack({...track, comments: [...track.comments, response.data]})
+        } catch (e) {
+            console.log(e)
+        }
+
     }
   };
 
@@ -76,28 +76,63 @@ const TrackPage = ({ serverTrack }) => {
           style={{ fontSize: 16, color: 'pink', borderColor: 'pink' }}
           onClick={addComment}
         >
-          Надіслати
-        </Button>
-      </Grid>
-      <div>
-        {track.comments.map((comment) => (
-          <div style={{ border: 'inline 2px pink' }}>
-            <div>Автор - {comment.username}</div>
-            <div>Комментар - {comment.text}</div>
-          </div>
-        ))}
-      </div>
-    </MainLayout>
-  );
+
+            <Button
+                variant={"outlined"}
+                style={{fontSize: 32}}
+                onClick={() => router.push('/tracks')}
+            >
+                До списку
+            </Button>
+            <Grid container style={{margin: '20px 0'}}>
+                <img src={'http://diw4nk35u3ll.cloudfront.net/' + track.picture} width={200} height={200}/>
+                <div style={{marginLeft: 30}}>
+                    <h1>Назва треку - {track.name}</h1>
+                    <h1>Виконавець - {track.artist}</h1>
+                    <h1>Прослуховування - {track.listens}</h1>
+                </div>
+            </Grid>
+            <h1>Слова</h1>
+            <p>{track.text}</p>
+            <h1>Комментарі</h1>
+            <Grid container>
+
+                <TextField
+                    label="Ваше ім'я"
+                    fullWidth
+                    {...username}
+                />
+                <TextField
+                    label="Комментар"
+                    {...text}
+                    fullWidth
+                    multiline
+                    rows={4}
+                />
+                <Button onClick={addComment}>Отправить</Button>
+            </Grid>
+            <div>
+                {track.comments.map(comment =>
+                    <div>
+                        <div>Автор - {comment.username}</div>
+                        <div>Комментар - {comment.text}</div>
+                    </div>
+                )}
+            </div>
+        </MainLayout>
+    );
+
 };
 
 export default TrackPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const response = await axios.get('http://localhost:5000/tracks/' + params.id);
-  return {
-    props: {
-      serverTrack: response.data,
-    },
-  };
-};
+
+export const getServerSideProps: GetServerSideProps = async ({params}) => {
+    const response = await axios.get('https://reverb-server.herokuapp.com/tracks/' + params.id)
+    return {
+        props: {
+            serverTrack: response.data
+        }
+    }
+}
+

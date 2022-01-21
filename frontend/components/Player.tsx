@@ -22,12 +22,28 @@ const Player = () => {
     setActiveTrack,
   } = useActions();
 
-  useEffect(() => {
-    if (!audio) {
-      audio = new Audio();
-    } else {
-      setAudio();
-      play();
+
+    useEffect(() => {
+        if (!audio) {
+            audio = new Audio()
+        } else {
+            setAudio()
+            play()
+        }
+    }, [active])
+
+    const setAudio = () => {
+        if (active) {
+            audio.src = 'http://diw4nk35u3ll.cloudfront.net/' + active.audio
+            audio.volume = volume / 100
+            audio.onloadedmetadata = () => {
+                setDuration(Math.ceil(audio.duration))
+            }
+            audio.ontimeupdate = () => {
+                setCurrentTime(Math.ceil(audio.currentTime))
+            }
+        }
+
     }
   }, [active]);
 

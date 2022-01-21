@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -28,6 +29,16 @@ export class TrackController {
   )
   create(@UploadedFiles() files, @Body() dto: CreateTrackDto) {
     const { picture, audio } = files;
+
+    console.log(dto);
+    if (
+      !dto.artist  ||
+      !dto.name  ||
+      !picture  ||
+      !audio 
+    ) {
+      throw new BadRequestException('Invalid data');
+    }
     return this.trackService.create(dto, picture[0], audio[0]);
   }
 

@@ -25,10 +25,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import { useRouter } from 'next/router';
 
 const menuItems = [
-  { text: 'Головна', href: '/' },
-  { text: 'Треки', href: '/tracks' },
-  { text: 'Альбоми', href: '/albums' },
-];
+
+    {text: 'Головна', href: '/'},
+    {text: 'Треки', href: '/tracks'},
+]
+
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
