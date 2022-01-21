@@ -15,7 +15,7 @@ const TrackPage = ({serverTrack}) => {
 
     const addComment = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/tracks/comment', {
+            const response = await axios.post('https://reverb-server.herokuapp.com/tracks/comment', {
                 username: username.value,
                 text: text.value,
                 trackId: track._id
@@ -39,7 +39,7 @@ const TrackPage = ({serverTrack}) => {
                 До списку
             </Button>
             <Grid container style={{margin: '20px 0'}}>
-                <img src={'http://localhost:5000/' + track.picture} width={200} height={200}/>
+                <img src={'http://diw4nk35u3ll.cloudfront.net/' + track.picture} width={200} height={200}/>
                 <div style={{marginLeft: 30}}>
                     <h1>Назва треку - {track.name}</h1>
                     <h1>Виконавець - {track.artist}</h1>
@@ -80,7 +80,7 @@ const TrackPage = ({serverTrack}) => {
 export default TrackPage;
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
-    const response = await axios.get('http://localhost:5000/tracks/' + params.id)
+    const response = await axios.get('https://reverb-server.herokuapp.com/tracks/' + params.id)
     return {
         props: {
             serverTrack: response.data

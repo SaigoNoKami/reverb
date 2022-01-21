@@ -9,16 +9,17 @@ const start = async () => {
     const app = await NestFactory.create(AppModule, { cors: true });
 
     const configService = app.get(ConfigService);
-    
-  config.update({
-    accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
-    secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
-    region: configService.get('AWS_REGION'),
-  });
+
+    config.update({
+      accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
+      secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
+      region: configService.get('AWS_REGION'),
+    });
 
     await app.listen(PORT, () => console.log('server started on PORT ' + PORT));
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    process.exit(1);
   }
 };
 start();

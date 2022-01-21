@@ -22,7 +22,6 @@ import {useRouter} from "next/router";
 const menuItems = [
     {text: 'Головна', href: '/'},
     {text: 'Треки', href: '/tracks'},
-    {text: 'Альбоми', href: '/albums'},
 ]
 
 export default function Navbar() {

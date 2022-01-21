@@ -24,7 +24,7 @@ const Player = () => {
 
     const setAudio = () => {
         if (active) {
-            audio.src = process.env.CLOUDFRONT + active.audio
+            audio.src = 'http://diw4nk35u3ll.cloudfront.net/' + active.audio
             audio.volume = volume / 100
             audio.onloadedmetadata = () => {
                 setDuration(Math.ceil(audio.duration))
